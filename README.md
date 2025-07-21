@@ -7,14 +7,14 @@ This stack utilizes a postgres backend and an nginx front end by utilizing the p
 ## Instructions
 
 ### Development:
-`python -m venv env`
-`source env/bin/activate`
-`pip install --upgrade pip`
-`pip install -r requirements.txt`
-Edit the `.env.example` file and replace all the fields as appropriate
-Save as `.env`
-Edit the `docker-compose.yaml` if you chose to define the project name, and apply the project name there as well as the container names
-Save it as is.
+* `python -m venv env`
+* `source env/bin/activate`
+* `pip install --upgrade pip`
+* `pip install -r requirements.txt`
+* Edit the `.env.example` file and replace all the fields as appropriate
+* Save as `.env`
+* Edit the `docker-compose.yaml` if you chose to define the project name, and apply the project name there as well as the container names
+* Save it as is.
 
 ### Deployment:
 
