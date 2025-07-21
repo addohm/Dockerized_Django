@@ -13,8 +13,10 @@ This stack utilizes a postgres backend and an nginx front end by utilizing the p
 * `pip install -r requirements.txt`
 * Edit the `.env.example` file and replace all the fields as appropriate
 * Save as `.env`
-* Edit the `docker-compose.yaml` if you chose to define the project name, and apply the project name there as well as the container names.  Leave the `project` folder ss is.  There will be instructions on how to modify that later.
+* Edit the `docker-compose.yaml` if you chose to define the project name, and apply the project name there as well as the container names.  Leave the `project` folder name as is.  There will be instructions on how to modify that later.
 * Save it as is.
+* `docker-compose --file=docker-compose.yaml up`
+* Visit http://0.0.0.0:8001/ in your browser to verify its running
 
 ### Deployment:
 
