@@ -1,6 +1,6 @@
 from pathlib import Path
 import mimetypes
-from os import environ, sys
+from os import sys
 from decouple import config
 
 print("Production environment settings loaded.")
@@ -9,7 +9,7 @@ mimetypes.add_type("text/css", ".css", True)
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-PROJECT_NAME = BASE_DIR.name
+PROJECT_NAME = config("PROJECT_NAME")
 
 SECRET_KEY = config("SECRET_KEY")
 
