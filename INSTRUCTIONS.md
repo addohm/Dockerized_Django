@@ -25,7 +25,7 @@ From here forward we will be working more closely with environment variables.  T
 
 NOTE(s) on when developing in the containerized state:
 a. the project will start to use the postgres server.  If you need to wipe the database, you need only delete the containers and volumes, and re-run the docker-compose script
-b. any changes made to code will not be reflected to the container state until the container is rebuilt via docker-compose
+b. any changes made to code will not be reflected to the container state until the container is removed and rebuilt via docker-compose
 
 * Edit the `docker-compose.yaml` if you chose to define the project name, and apply the project name there as well as the container names.  Leave the `project` folder name as is.  There will be instructions on how to modify that later.
 * Save it as is.
