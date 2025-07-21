@@ -14,4 +14,4 @@ In the docker compose you can see that the three containers that make up this st
 
 When running a django container there is some mystery in it as to how it knows what to do with the environment variables you give it.  This is where the `entrypoint.sh` comes in.  The `entrypoint.sh` is essentially a set instructions given to the OS to execute when it's brought up.  And this is where the focus of this project ended up.  `entrypoint.sh` essentially takes the project that you developed on your machine, and copies it into the container.
 
-A production django server cannot be complete without a frontend compliment, which is where nginx comes through.  Nginx passes data back and fourth from port 8000 to 8001 (if you leave it set that way) and you can then pass your reverse proxy over it to complete the system.
+A production django server cannot be complete without a frontend compliment, which is where nginx comes through.  Nginx passes data back and fourth from port 8000 to 8001 (if you leave it set that way) using a software proxy function called `proxy_pass` and you can then pass your reverse proxy over it to complete the system.
