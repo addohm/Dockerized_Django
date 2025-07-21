@@ -5,14 +5,20 @@ Why?  Containerized Django is hard, frusterating, and makes you want to just go 
 This stack utilizes a postgres backend and an nginx front end by utilizing the proxy_pass function.  
 
 ## Instructions
+You must first develop your project locally as you normally would.  Use this file structure as a base.  Feel free to do the standard things expected and get your project in a state which you're ready to test and troubleshoot it in a containerized state.  This project comes with the base django project and an initial app to get you started.  Adding further apps is all still very standard.  If you need to add environment variables, add to the `.env` file and retrieve any variables using `python-decouple` or other means.  This will still use `sqlite3` as a development database which will be cleaned up later with provided scripts.
 
-### Development:
+### Local Development:
 * `python -m venv env`
 * `source env/bin/activate`
 * `pip install --upgrade pip`
 * `pip install -r requirements.txt`
 * Edit the `.env.example` file and replace all the fields as appropriate
 * Save as `.env`
+* `python manage.py migrate`
+* `python manage.py createsuperuser`
+* `python manage.py runserver 8001 --settings=project.settings.development`
+
+### Containerized Development:
 * Edit the `docker-compose.yaml` if you chose to define the project name, and apply the project name there as well as the container names.  Leave the `project` folder name as is.  There will be instructions on how to modify that later.
 * Save it as is.
 * `docker-compose --file=docker-compose.yaml up`
