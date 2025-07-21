@@ -4,11 +4,11 @@ Why?  Containerized Django is hard, frusterating, and makes you want to just go 
 
 This stack utilizes a postgres backend and an nginx front end by utilizing the proxy_pass function.  
 
-##Instructions
+## Instructions
 
-###Development:
+### Development:
 
 
-###Deployment:
+### Deployment:
 
 
