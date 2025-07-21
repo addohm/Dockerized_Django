@@ -19,7 +19,7 @@ for item in os.listdir(root):
 # Delete USER UPLOADED MEDIA folder
   if os.path.isdir(f'{root}/{item}'):
     print(f'> {root}/{item}')
-    if item == 'media':
+    if item == 'mediafiles':
       for subitem in item:
         if os.path.isdir(f'{root}/{item}/{subitem}'):
           shutil.rmtree(f'{root}/{item}/{subitem}')
