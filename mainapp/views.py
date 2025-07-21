@@ -1,4 +1,4 @@
 from django.http import HttpResponse
 
 def basic_view(request):
-    return HttpResponse("Hello world!")
+    return HttpResponse("Hello m'world!")
