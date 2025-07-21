@@ -22,10 +22,14 @@ If you need to add environment variables, add to the `.env` file and retrieve an
 From here forward we will be working more closely with environment variables.  To name some key ones we use during development - `DJANGO_SUPERUSER_EMAIL`, `DJANGO_SUPERUSER_USERNAME` & `DJANGO_SUPERUSER_PASSWORD`.
 
 ### Containerized Development:
+NOTE: When developing in the continerized state, the project will start to use the postgres server.
+
 * Edit the `docker-compose.yaml` if you chose to define the project name, and apply the project name there as well as the container names.  Leave the `project` folder name as is.  There will be instructions on how to modify that later.
 * Save it as is.
 * `docker-compose --file=docker-compose.yaml up`
 * Visit http://0.0.0.0:8001/ in your browser to verify its running
+
+
 
 ### Deployment:
 
