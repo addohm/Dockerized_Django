@@ -25,6 +25,8 @@ This package comes with a few other things I like to use in Django projects like
 
 If you need to add environment variables, add to the `.env` file and retrieve any variables using `python-decouple` or other means.  This will still use `sqlite3` as a development database which will be cleaned up later with provided scripts.  
 
+From here forward we will be working more closely with environment variables.  To name some key ones we use during development - `DJANGO_SUPERUSER_EMAIL`, `DJANGO_SUPERUSER_USERNAME` & `DJANGO_SUPERUSER_PASSWORD`.
+
 ### Containerized Development:
 * Edit the `docker-compose.yaml` if you chose to define the project name, and apply the project name there as well as the container names.  Leave the `project` folder name as is.  There will be instructions on how to modify that later.
 * Save it as is.
