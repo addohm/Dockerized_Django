@@ -15,7 +15,7 @@ The steps listed below in Local Development can all be done as-is after cloning 
 
 Following this, must first develop your project locally as you normally would.  Use this file structure as a base.  Feel free to do the standard things expected and get your project in a state which you're ready to test and troubleshoot it in a containerized state.  This project comes with the base django project and an initial app to get you started.  Adding further apps is all still very standard.  
 
-This package comes with a few other things I like to use in Django projects like `python-decouple`, `django-debug-toolbar` & `django-jazzmin`. Feel free to add to the package requirements, just don't foret to update the requirements.txt.  
+This package comes with a few other things I like to use in Django projects like `gunicorn`, `python-decouple`, `django-debug-toolbar` & `django-jazzmin`. Feel free to add to the package requirements, just don't foret to update the requirements.txt.  
 
 If you need to add environment variables, add to the `.env` file and retrieve any variables using `python-decouple` or other means.  This will still use `sqlite3` as a development database which will be cleaned up later with provided scripts.  
 
