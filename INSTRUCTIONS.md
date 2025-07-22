@@ -44,4 +44,4 @@ a. the project will start to use the postgres server if you leave it set to do s
 ### Rebuilding the Stack
 `docker compose down`
 `docker build --no-cache`
-`docker compose up`
+`docker-compose --file=docker-compose.yaml up --detach`
