@@ -1,4 +1,6 @@
 #!/bin/sh
+# Use this script during development when containerized
+# when resetting the containerized state to base
 
 docker compose down
 sudo rm -Rf ./staticfiles/*
