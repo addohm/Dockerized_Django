@@ -120,7 +120,7 @@ STATIC_URL = "static/"
 # ex: /var/www/files/media
 MEDIA_ROOT = "./mediafiles"
 
-# MEDIA_URL: This is the base URL location from which static files will be served, 
+# MEDIA_URL: This is the base URL location from which media files will be served, 
 # for example on a CDN.
 MEDIA_URL = "media/"
 
