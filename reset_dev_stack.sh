@@ -15,13 +15,13 @@ log_action() {
 }
 
 log_action "Stopping containers..."
-docker compose down
+docker compose down -v
 
 log_action "Cleaning static files..."
-sudo rm -rf "${root}/staticfiles/"*
+rm -rf "${root}/staticfiles/"*
 
 log_action "Cleaning media files..."
-sudo rm -rf "${root}/mediafiles/"*
+rm -rf "${root}/mediafiles/"*
 
 log_action "Rebuilding Docker image..."
 docker build -t django:latest "${root}" --no-cache
