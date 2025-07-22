@@ -1,7 +1,6 @@
 from pathlib import Path
-import mimetypes
-from os import sys
 from decouple import config
+import mimetypes
 
 print("Production environment settings loaded.")
 
@@ -13,7 +12,7 @@ PROJECT_NAME = config("PROJECT_NAME")
 
 SECRET_KEY = config("SECRET_KEY")
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=lambda v: [s.strip() for s in v.split(',')])
 CSRF_TRUSTED_ORIGINS = config("CSRF_TRUSTED_ORIGINS", cast=lambda v: [s.strip() for s in v.split(',')])
@@ -31,6 +30,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -40,7 +40,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'project.urls'
+ROOT_URLCONF = 'cdc_project.urls'
 
 TEMPLATES = [
     {
@@ -58,12 +58,16 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'project.wsgi.application'
+WSGI_APPLICATION = 'cdc_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': f"django.db.backends.{config("DATABASE_ENGINE")}",
+        'NAME': config("DATABASE_NAME"),
+        'USER': config("DATABASE_USERNAME"),
+        "PASSWORD": config("DATABASE_PASSWORD"),
+        "HOST": config("DATABASE_ADDR"),
+        "PORT": config("DATABASE_PORT"),
     }
 }
 
@@ -109,7 +113,7 @@ STATICFILES_DIRS = [
 
 # STATIC_ROOT: This is the absolute path to a directory where Django's collectstatic tool 
 # will gather any static files referenced in our templates. Once collected, these can then be uploaded as a group to wherever the files are to be hosted.
-STATIC_ROOT = "./staticfiles"
+STATIC_ROOT = "/project/staticfiles"
 
 # STATIC_URL: This is the base URL location from which static files will be served, 
 # for example on a CDN.
@@ -117,36 +121,24 @@ STATIC_URL = "static/"
 
 # MEDIA_ROOT: This is the absolute path to a directory where Django will gather any user uploaded images and files
 # ex: /var/www/files/media
-MEDIA_ROOT = "./mediafiles"
+MEDIA_ROOT = "/project/mediafiles"
 
 # MEDIA_URL: This is the base URL location from which static files will be served, 
 # for example on a CDN.
 MEDIA_URL = "media/"
 
-ENABLE_DEBUG_TOOLBAR = DEBUG and "test" not in sys.argv
-if ENABLE_DEBUG_TOOLBAR:
-    SECURE_CROSS_ORIGIN_OPENER_POLICY = None
-    mimetypes.add_type("application/javascript", ".js", True)
-    INSTALLED_APPS += [
-        "debug_toolbar",
-    ]
-    MIDDLEWARE += [
-        "debug_toolbar.middleware.DebugToolbarMiddleware",
-    ]
-    DEBUG_TOOLBAR_CONFIG = {"ROOT_TAG_EXTRA_ATTRS": "data-turbo-permanent hx-preserve"}
-
 # https://django-jazzmin.readthedocs.io/
 JAZZMIN_SETTINGS = {
-    "site_title": "",
-    "site_header": "",
-    "site_brand": "",
-    "site_logo": "",
-    "login_logo": "",
-    "login_logo_dark": "",
+    "site_title": "CDC Admin",
+    "site_header": "Cave Dive Club",
+    "site_brand": "Cave Dive Club",
+    "site_logo": "/images/logos/cdc_logo_transinv_sm.png",
+    "login_logo": '/images/logos/cdc_logo_trans_sm.png',
+    "login_logo_dark": '/images/logos/cdc_logo_transinv_sm.png',
     "site_logo_classes": "",
-    "site_icon": "",
-    "welcome_sign": "",
-    "copyright": "",
+    "site_icon": '/images/favicons/favicon-32x32.png',
+    "welcome_sign": "Welcome to the CDC Admin",
+    "copyright": "Cave Dive Club",
     "user_avatar": None,
 
     ############
@@ -155,7 +147,7 @@ JAZZMIN_SETTINGS = {
 
     "topmenu_links": [
         {"name": "View Site",  "url": "index"},
-        {"name": "Support", "url": "", "new_window": True},
+        {"name": "Support", "url": "https://github.com/addohm/dcdc_docker/issues", "new_window": True},
     ],
 
     #############
@@ -163,7 +155,7 @@ JAZZMIN_SETTINGS = {
     #############
 
     "usermenu_links": [
-        {"name": "Support", "url": "", "new_window": True},
+        {"name": "Support", "url": "https://github.com/addohm/dcdc_docker/issues", "new_window": True},
     ],
 
     #############
@@ -174,7 +166,7 @@ JAZZMIN_SETTINGS = {
     "navigation_expanded": True,
     "hide_apps": [],
     "hide_models": [],
-    "order_with_respect_to": ["mainapp", "auth"],
+    "order_with_respect_to": ["mainapp", "mainapp.contact", "mainapp.divesites", "mainapp.products", "auth"],
     "icons": {
         "auth": "fas fa-users-cog",
         "auth.user": "fas fa-user",
@@ -194,7 +186,7 @@ JAZZMIN_SETTINGS = {
     "custom_css": None,
     "custom_js": None,
     "use_google_fonts_cdn": True,
-    "show_ui_builder": True,
+    "show_ui_builder": False,
 
     ###############
     # Change view #
