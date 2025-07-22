@@ -35,15 +35,6 @@ for item in os.listdir(root):
         if os.path.exists(f'{root}/{item}/{subitem}'):
           os.remove(f'{root}/{item}/{subitem}')
           print(f"- '{root}/{item}/{subitem}'")
-    if item == 'fileshare':
-      for subitem in item:
-        if os.path.isdir(f'{root}/{item}/{subitem}'):
-          shutil.rmtree(f'{root}/{item}/{subitem}')
-          print(f"- {root}/{item}/{subitem}")
-        if os.path.exists(f'{root}/{item}/{subitem}'):
-          os.remove(f'{root}/{item}/{subitem}')
-          print(f"- '{root}/{item}/{subitem}'")
-
 
     if os.path.exists(f'{root}/{item}'):
       for subitem in os.listdir(f'{root}/{item}'):
