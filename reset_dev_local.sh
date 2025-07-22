@@ -4,8 +4,8 @@
 root=$(dirname "$(realpath "$0")")
 
 # Function to print deletion messages
-delete_msg() {
-  echo "- $1"
+log_action() {
+  echo "==> $1"
 }
 
 # Process each item in the root directory
@@ -14,7 +14,7 @@ for item in "$root"/*; do
   if [[ "$(basename "$item")" == "db.sqlite3" ]]; then
     if [[ -f "$item" ]]; then
       rm -f "$item"
-      delete_msg "$item"
+      log_action "$item"
     fi
   fi
 
@@ -28,10 +28,10 @@ for item in "$root"/*; do
       for subitem in "$item"/*; do
         if [[ -d "$subitem" ]]; then
           rm -rf "$subitem"
-          delete_msg "$subitem"
+          log_action "$subitem"
         elif [[ -f "$subitem" ]]; then
           rm -f "$subitem"
-          delete_msg "$subitem"
+          log_action "$subitem"
         fi
       done
     fi
@@ -48,7 +48,7 @@ for item in "$root"/*; do
           for file in "$subitem"/*; do
             if [[ "$(basename "$file")" != "__init__.py" && -f "$file" ]]; then
               rm -f "$file"
-              delete_msg "$file"
+              log_action "$file"
             fi
           done
         fi
@@ -59,7 +59,7 @@ for item in "$root"/*; do
           for file in "$subitem"/*; do
             if [[ "$(basename "$file")" != "__init__.py" && -f "$file" ]]; then
               rm -f "$file"
-              delete_msg "$file"
+              log_action "$file"
             fi
           done
         fi
