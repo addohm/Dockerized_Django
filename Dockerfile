@@ -13,12 +13,15 @@ ENV PYTHONBUFFERED=1
 RUN addgroup -S django && \
     adduser -h /project -S django -G django && \
     install -d -m 0765 -o django -g django /project \
-    install -d -m 0765 -o django -g django /project/media \
+    install -d -m 0765 -o django -g django /project/mediafiles \
     install -d -m 0765 -o django -g django /project/staticfiles
 
 # Update apk and install psycopg2 and pillow dependencies
-RUN apk update
-RUN apk add postgresql-dev zlib-dev jpeg-dev
+RUN apk update && \
+    apk add --no-cache \
+    postgresql-dev \
+    zlib-dev \
+    jpeg-dev
 
 # Upgrade pip to ensure we have the latest version for installing dependencies
 RUN pip install --no-cache-dir --root-user-action ignore --upgrade pip
