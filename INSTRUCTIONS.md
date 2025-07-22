@@ -29,6 +29,7 @@ b. any changes made to code will not be reflected to the container state until t
 
 * Edit the `docker-compose.yaml` if you chose to define the project name, and apply the project name there as well as the container names.  Leave the `project` folder name as is.  There will be instructions on how to modify that later.
 * Save it as is.
+* `docker-compose build --no-cache`
 * `docker-compose --file=docker-compose.yaml up --detach`
 * Visit http://0.0.0.0:8001/ in your browser to verify its running
 
