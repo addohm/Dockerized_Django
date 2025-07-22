@@ -20,7 +20,7 @@ services:
       - postgresdb
     volumes:
       - static_data:/project/staticfiles
-      - media_data:/project/media
+      - media_data:/project/mediafiles
     env_file:
       - ./.env
 
