@@ -24,7 +24,7 @@ From here forward we will be working more closely with environment variables.  T
 ### Containerized Development:
 
 NOTE(s) on when developing in the containerized state:
-a. the project will start to use the postgres server.  If you need to wipe the database, you need only delete the containers and volumes, and re-run the docker-compose script
+a. the project will continue to use the sqlite3 database server.  If you need to wipe the database, you need only restart the continer
 b. any changes made to code will not be reflected to the container state until the container is removed and rebuilt via docker-compose
 
 * Edit the `docker-compose.yaml` if you chose to define the project name, and apply the project name there as well as the container names.  Leave the `project` folder name as is.  There will be instructions on how to modify that later.
@@ -33,8 +33,15 @@ b. any changes made to code will not be reflected to the container state until t
 * `docker-compose --file=docker-compose.yaml up --detach`
 * Visit http://0.0.0.0:8001/ in your browser to verify its running
 
-
-
 ### Deployment:
+You should run the `reset_prod_project.sh` script before building a production stack.
 
+### Production (WIP):
 
+NOTE(s) on when developing in the containerized state:
+a. the project will start to use the postgres server.  If you need to wipe the database, you should rebuild the stack.  If you need to update your project, you should also rebuild the stack but preserve your database volume.
+
+### Rebuilding the Stack
+`docker compose down`
+`docker build --no-cache`
+`docker compose up`
