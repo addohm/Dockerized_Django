@@ -3,6 +3,5 @@
 docker compose down
 sudo rm -Rf ./staticfiles/*
 sudo rm -Rf ./mediafiles/*
-sudo rm -Rf ./fileshare/*
-docker build -t django:latest .
-docker compose up --detach
+docker build --no-cache
+docker-compose --file=docker-compose.yaml up --detach
