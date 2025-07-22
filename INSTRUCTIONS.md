@@ -42,6 +42,6 @@ NOTE(s) on when developing in the containerized state:
 a. the project will start to use the postgres server if you leave it set to do so.  The postgres server is set up to persist on restarting the stack, but it will _not_ persist if you rebuild the stack.  If you need to wipe the database, you should rebuild the stack.  If you need to update your project, you should also rebuild the stack but preserve your database volume.  In production, it is usually recommended to have a separate external database server.  If you choose that route, you need only change the production.py settings and use the `docker-compose-nopostgres.yaml` when (re)building your stack.
 
 ### Rebuilding the Stack
-`docker compose down`
-`docker build --no-cache`
-`docker-compose --file=docker-compose.yaml up --detach`
+```docker compose down
+docker build --no-cache -t django:latest .
+docker-compose --file=docker-compose.yaml up --detach```
