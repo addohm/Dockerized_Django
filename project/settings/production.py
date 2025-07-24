@@ -105,6 +105,10 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# LOGIN\OUT REDIRECTION
+LOGIN_REDIRECT_URL = 'home'  # Where to redirect after login
+LOGOUT_REDIRECT_URL = 'home'  # Where to redirect after logout
+
 # STATICFILES_DIRS: This lists additional directories that Django's collectstatic tool 
 # should search for static files.
 STATICFILES_DIRS = [
