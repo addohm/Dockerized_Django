@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block maincontent %}
+    <div class="col-md-12">
+      Login Content
+    </div>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary mt-1">Login</button>
+  </form>
+{% endblock %}

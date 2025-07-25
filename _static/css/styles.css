@@ -1,0 +1,152 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative; /* Ensure the body is a positioning context */
+    padding-bottom: 50px;  /* Adjust this to match footer height */
+}
+
+/* Navbar styling */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure the navbar is above other elements */
+    background-color: #343a40; /* Match the navbar background color */
+}
+
+/* For mobile view */
+@media (max-width: 991.98px) {
+  /* Prevent navbar from expanding when dropdown is clicked */
+  .navbar-nav .dropdown-menu {
+    position: absolute !important;
+  }
+  
+  /* Style adjustments for left dropdown */
+  .navbar-nav.me-auto .dropdown-menu {
+    left: 0;
+    right: auto;
+  }
+  
+  /* Ensure dropdowns appear above other content */
+  .dropdown-menu {
+    z-index: 1001;
+  }
+}
+
+/* Main content styling */
+.container {
+    margin-top: 80px; /* Adjust this value to ensure content starts below the navbar */
+    flex: 1; /* Ensure the main content takes up the remaining space */
+    z-index: 1; /* Ensure the content is above the background image */
+    position: relative; /* Make the container a positioning context */
+}
+
+/* Carousel styling - WORKING VERSION */
+#carousel {
+    position: relative;
+    height: 300px;
+    width: 100%;
+    overflow: hidden; /* Only if you want to hide any overflow */
+}
+
+/* Preserve Bootstrap's structure */
+.carousel-inner {
+    height: 100%;
+}
+
+.carousel-item {
+    height: 100%;
+    width: 100%;
+    text-align: center; /* Helps center the image */
+}
+
+/* Image styling that won't break functionality */
+.carousel-item img {
+    height: 100%;
+    width: auto; /* Changed from 100% to auto */
+    max-width: 100%;
+    object-fit: cover;
+    object-position: center;
+    margin: 0 auto; /* Center horizontally */
+    display: block;
+}
+
+/* Ensure controls remain clickable */
+.carousel-control-prev,
+.carousel-control-next {
+    z-index: 10;
+    width: 5%;
+}
+
+/* Optional: If you want full-width images with centered focus */
+.carousel-item.full-width img {
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    object-position: center;
+}
+
+/* Footer styling */
+footer {
+    height: 60px; /* Adjust if necessary */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 2; /* Ensure the footer is above the carousel */
+    background-color: #343a40; /* Optional: Match the footer background color with the navbar */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Background image styling */
+body.indexBody::before {
+    opacity: 1.0;
+}
+
+body.otherBody::before {
+    opacity: 0.2;
+    bottom: 80px;
+    background-size: contain;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 80px; /* Start below the navbar */
+    left: 20px;
+    right: 20px;
+    bottom: 400px; /* End above the carousel (60px navbar + 200px carousel height) */
+    background-image: url('../images/logos/divemonkey.png'); /* Path to your background logo */
+    background-size: contain; /* Ensure the image covers the entire area */
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1; /* Place it behind the main content but above the carousel */
+}
+
+.staff-img {
+    width: 100%; /* Make the image fill the container */
+    height: 300px; /* Set a fixed height */
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
+    border-radius: 10px; /* Optional: Add rounded corners */
+}
+
+.dscard-img {
+    width: 100%; /* Make the image fill the container */
+    height: 200px; /* Set a fixed height */
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
+    border-radius: 10px; /* Optional: Add rounded corners */
+}
+
+.user-status {
+    width: 10px;
+    height: 10px;
+    background: #10b981;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}

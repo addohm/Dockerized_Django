@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block maincontent %}
+
+    <div class="col-md-12">
+      Protected Content
+    </div>{% if user.is_authenticated %}
+    <a href="{% url 'index' %}" class="btn btn-primary mt-1"><button class="btn btn-primary">Site Index Page</button></a>
+    <a href="{% url 'profile-detail' %}" class="btn btn-primary mt-1"><button class="btn btn-primary">Profile View page</button></a>
+    <a href="{% url 'profile-update' %}" class="btn btn-primary mt-1"><button class="btn btn-primary">Profile Update page</button></a>
+  {% endif %}
+
+  {% if user.is_superuser %}
+    <a href="{% url 'admin:index' %}" class="btn btn-primary mt-1"><button class="btn btn-primary">Admin Page</button></a>
+  {% endif %}
+{% endblock %}

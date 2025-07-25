@@ -102,9 +102,9 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Authentication settings
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'protected'  # Where to redirect after login
+# LOGIN\OUT REDIRECTION
+LOGIN_URL = 'login'  # Where to redirect if the user is not authenticated
+LOGIN_REDIRECT_URL = 'protected'  # Where to redirect after login, use 'protected' if you want to redirect to the break out the login view, see urls.py
 LOGOUT_REDIRECT_URL = 'index'  # Where to redirect after logout
 
 # STATICFILES_DIRS: This lists additional directories that Django's collectstatic tool 
@@ -143,16 +143,16 @@ if ENABLE_DEBUG_TOOLBAR:
 
 # https://django-jazzmin.readthedocs.io/
 JAZZMIN_SETTINGS = {
-    "site_title": "",
-    "site_header": "",
-    "site_brand": "",
-    "site_logo": "",
-    "login_logo": "",
-    "login_logo_dark": "",
+    "site_title": "addohm.net Admin",
+    "site_header": "addohm.net",
+    "site_brand": "addohm.net",
+    "site_logo": "/images/logos/divemonkey_dark_sm.png",
+    "login_logo": '/images/logos/divemonkey_dark_sm.png',
+    "login_logo_dark": '/images/logos/divemonkey_dark.png',
     "site_logo_classes": "",
-    "site_icon": "",
-    "welcome_sign": "",
-    "copyright": "",
+    "site_icon": '/images/favicons/favicon-32x32.png',
+    "welcome_sign": "Welcome to the addohm.net Admin",
+    "copyright": "addohm.net",
     "user_avatar": None,
 
     ############

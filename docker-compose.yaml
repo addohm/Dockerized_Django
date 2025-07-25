@@ -1,9 +1,9 @@
-name: danet_project
+name: dockerized_django_project
 
 services:
   postgresdb:
     image: postgres:17.2-alpine3.21
-    container_name: danet_project_postgres
+    container_name: dockerized_django_project_postgres
     ports:
       - "5432:5432"
     volumes:
@@ -15,7 +15,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: danet_project_django
+    container_name: dockerized_django_project_django
     depends_on:
       - postgresdb
     volumes:
@@ -26,7 +26,7 @@ services:
 
   nginx:
     image: nginx:1.27.3-alpine-slim
-    container_name: danet_project_nginx
+    container_name: dockerized_django_project_nginx
     ports:
       - "8001:80"
     volumes:

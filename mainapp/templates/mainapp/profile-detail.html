@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block maincontent %}
+    <div class="col-md-12">
+      Profile Details Content
+    </div>
+  <img src="{{ profile.image.url }}" alt="Current" class="w-full h-full object-cover" id="image-preview" />
+  {{ user.username }}
+  {{ user.email }}
+  {{ user.first_name }}
+  {{ user.last_name }}
+  <a href="{% url 'profile-update' %}" class="btn btn-primary mt-3"><button class="btn btn-primary mt-1">Edit Profile</button></a>
+{% endblock %}
