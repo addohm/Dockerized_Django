@@ -17,7 +17,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 INTERNAL_IPS = ['127.0.0.1', '0.0.0.0']
-CSRF_TRUSTED_ORIGINS = config("CSRF_TRUSTED_ORIGINS", cast=lambda v: [s.strip() for s in v.split(',')])
+CSRF_TRUSTED_ORIGINS = config("CSRF_TRUSTED_ORIGINS", cast=lambda v: [
+                              s.strip() for s in v.split(',')])
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 INSTALLED_APPS = [
@@ -104,20 +105,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # LOGIN\OUT REDIRECTION
 LOGIN_URL = 'login'  # Where to redirect if the user is not authenticated
-LOGIN_REDIRECT_URL = 'protected'  # Where to redirect after login, use 'protected' if you want to redirect to the break out the login view, see urls.py
+# Where to redirect after login, use 'protected' if you want to redirect to the break out the login view, see urls.py
+LOGIN_REDIRECT_URL = 'protected'
 LOGOUT_REDIRECT_URL = 'index'  # Where to redirect after logout
 
-# STATICFILES_DIRS: This lists additional directories that Django's collectstatic tool 
+# STATICFILES_DIRS: This lists additional directories that Django's collectstatic tool
 # should search for static files.
 STATICFILES_DIRS = [
     f"{BASE_DIR}/_static",
 ]
 
-# STATIC_ROOT: This is the absolute path to a directory where Django's collectstatic tool 
+# STATIC_ROOT: This is the absolute path to a directory where Django's collectstatic tool
 # will gather any static files referenced in our templates. Once collected, these can then be uploaded as a group to wherever the files are to be hosted.
 STATIC_ROOT = "./staticfiles"
 
-# STATIC_URL: This is the base URL location from which static files will be served, 
+# STATIC_URL: This is the base URL location from which static files will be served,
 # for example on a CDN.
 STATIC_URL = "static/"
 
@@ -125,7 +127,7 @@ STATIC_URL = "static/"
 # ex: /var/www/files/media
 MEDIA_ROOT = "./mediafiles"
 
-# MEDIA_URL: This is the base URL location from which media files will be served, 
+# MEDIA_URL: This is the base URL location from which media files will be served,
 # for example on a CDN.
 MEDIA_URL = "media/"
 
@@ -139,20 +141,21 @@ if ENABLE_DEBUG_TOOLBAR:
     MIDDLEWARE += [
         "debug_toolbar.middleware.DebugToolbarMiddleware",
     ]
-    DEBUG_TOOLBAR_CONFIG = {"ROOT_TAG_EXTRA_ATTRS": "data-turbo-permanent hx-preserve"}
+    DEBUG_TOOLBAR_CONFIG = {
+        "ROOT_TAG_EXTRA_ATTRS": "data-turbo-permanent hx-preserve"}
 
 # https://django-jazzmin.readthedocs.io/
 JAZZMIN_SETTINGS = {
-    "site_title": "addohm.net Admin",
-    "site_header": "addohm.net",
-    "site_brand": "addohm.net",
+    "site_title": "your site Admin",
+    "site_header": "your site",
+    "site_brand": "your site",
     "site_logo": "/images/logos/divemonkey_dark_sm.png",
     "login_logo": '/images/logos/divemonkey_dark_sm.png',
     "login_logo_dark": '/images/logos/divemonkey_dark.png',
     "site_logo_classes": "",
     "site_icon": '/images/favicons/favicon-32x32.png',
-    "welcome_sign": "Welcome to the addohm.net Admin",
-    "copyright": "addohm.net",
+    "welcome_sign": "Welcome to the site Admin",
+    "copyright": "your site",
     "user_avatar": None,
 
     ############

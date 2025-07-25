@@ -14,8 +14,10 @@ SECRET_KEY = config("SECRET_KEY")
 
 DEBUG = False
 
-ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=lambda v: [s.strip() for s in v.split(',')])
-CSRF_TRUSTED_ORIGINS = config("CSRF_TRUSTED_ORIGINS", cast=lambda v: [s.strip() for s in v.split(',')])
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=lambda v: [
+                       s.strip() for s in v.split(',')])
+CSRF_TRUSTED_ORIGINS = config("CSRF_TRUSTED_ORIGINS", cast=lambda v: [
+                              s.strip() for s in v.split(',')])
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 INSTALLED_APPS = [
@@ -40,7 +42,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'cdc_project.urls'
+ROOT_URLCONF = 'project.urls'
 
 TEMPLATES = [
     {
@@ -58,7 +60,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'cdc_project.wsgi.application'
+WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': {
@@ -110,17 +112,17 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'protected'  # Where to redirect after login
 LOGOUT_REDIRECT_URL = 'index'  # Where to redirect after logout
 
-# STATICFILES_DIRS: This lists additional directories that Django's collectstatic tool 
+# STATICFILES_DIRS: This lists additional directories that Django's collectstatic tool
 # should search for static files.
 STATICFILES_DIRS = [
     f"{BASE_DIR}/_static",
 ]
 
-# STATIC_ROOT: This is the absolute path to a directory where Django's collectstatic tool 
+# STATIC_ROOT: This is the absolute path to a directory where Django's collectstatic tool
 # will gather any static files referenced in our templates. Once collected, these can then be uploaded as a group to wherever the files are to be hosted.
 STATIC_ROOT = "/project/staticfiles"
 
-# STATIC_URL: This is the base URL location from which static files will be served, 
+# STATIC_URL: This is the base URL location from which static files will be served,
 # for example on a CDN.
 STATIC_URL = "static/"
 
@@ -128,7 +130,7 @@ STATIC_URL = "static/"
 # ex: /var/www/files/media
 MEDIA_ROOT = "/project/mediafiles"
 
-# MEDIA_URL: This is the base URL location from which static files will be served, 
+# MEDIA_URL: This is the base URL location from which static files will be served,
 # for example on a CDN.
 MEDIA_URL = "media/"
 
@@ -152,7 +154,8 @@ JAZZMIN_SETTINGS = {
 
     "topmenu_links": [
         {"name": "View Site",  "url": "index"},
-        {"name": "Support", "url": "https://github.com/addohm/dcdc_docker/issues", "new_window": True},
+        {"name": "Support", "url": "https://github.com/addohm/dcdc_docker/issues",
+            "new_window": True},
     ],
 
     #############
@@ -160,7 +163,8 @@ JAZZMIN_SETTINGS = {
     #############
 
     "usermenu_links": [
-        {"name": "Support", "url": "https://github.com/addohm/dcdc_docker/issues", "new_window": True},
+        {"name": "Support", "url": "https://github.com/addohm/dcdc_docker/issues",
+            "new_window": True},
     ],
 
     #############
