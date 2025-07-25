@@ -96,7 +96,7 @@ if [[ -z "$VIRTUAL_ENV" ]]; then
   fi
 fi
 
-if ask_yes_no "Do you want to migrate and run the django development server?"; then
+if ask_yes_no "Do you want to migrate and run the django server?"; then
   if [[ -n "$VIRTUAL_ENV" ]]; then
     export DJANGO_SUPERUSER_USERNAME=admin
     export DJANGO_SUPERUSER_EMAIL=admin@proton.me
@@ -118,43 +118,41 @@ if ask_yes_no "Do you want to migrate and run the django development server?"; t
   fi
 fi
 
-if ask_yes_no "Do you want to all the processes in the python virtual environment?"; then
-  # Get the path to the current virtual environment's Python interpreter
-  if [ -n "$VIRTUAL_ENV" ]; then
-      VENV_PYTHON_PATH="$VIRTUAL_ENV/bin/python"
-      echo "Virtual environment Python path: $VENV_PYTHON_PATH"
-      
-      # Find all PIDs using this Python interpreter
-      PIDS=$(pgrep -f "$VENV_PYTHON_PATH")
-      
-      if [ -n "$PIDS" ]; then
-          echo "Found processes running in this virtual environment (PIDs):"
-          for PID in $PIDS; do
-              # Get more info about each process
-              COMMAND=$(ps -p $PID -o cmd=)
-              echo "Killing PID: $PID | Command: $COMMAND"
-              kill $PID
-          done
-          
-          # Wait a moment for processes to terminate
-          sleep 1
-          
-          # Check for and force kill any remaining processes
-          REMAINING_PIDS=$(pgrep -f "$VENV_PYTHON_PATH")
-          if [ -n "$REMAINING_PIDS" ]; then
-              echo "Some processes didn't terminate, forcing kill..."
-              for PID in $REMAINING_PIDS; do
-                  COMMAND=$(ps -p $PID -o cmd=)
-                  echo "Force killing PID: $PID | Command: $COMMAND"
-                  kill -9 $PID
-              done
-          fi
-          
-          echo "All processes in virtual environment terminated."
-      else
-          echo "No active processes found running in this virtual environment"
-      fi
-  else
-      echo "Not currently in a virtual environment - nothing to kill"
-  fi
+# Get the path to the current virtual environment's Python interpreter
+if [ -n "$VIRTUAL_ENV" ]; then
+    VENV_PYTHON_PATH="$VIRTUAL_ENV/bin/python"
+    echo "Virtual environment Python path: $VENV_PYTHON_PATH"
+    
+    # Find all PIDs using this Python interpreter
+    PIDS=$(pgrep -f "$VENV_PYTHON_PATH")
+    
+    if [ -n "$PIDS" ]; then
+        echo "Found processes running in this virtual environment (PIDs):"
+        for PID in $PIDS; do
+            # Get more info about each process
+            COMMAND=$(ps -p $PID -o cmd=)
+            echo "Killing PID: $PID | Command: $COMMAND"
+            kill $PID
+        done
+        
+        # Wait a moment for processes to terminate
+        sleep 1
+        
+        # Check for and force kill any remaining processes
+        REMAINING_PIDS=$(pgrep -f "$VENV_PYTHON_PATH")
+        if [ -n "$REMAINING_PIDS" ]; then
+            echo "Some processes didn't terminate, forcing kill..."
+            for PID in $REMAINING_PIDS; do
+                COMMAND=$(ps -p $PID -o cmd=)
+                echo "Force killing PID: $PID | Command: $COMMAND"
+                kill -9 $PID
+            done
+        fi
+        
+        echo "All processes in virtual environment terminated."
+    else
+        echo "No active processes found running in this virtual environment"
+    fi
+else
+    echo "Not currently in a virtual environment - nothing to kill"
 fi
