@@ -43,7 +43,7 @@ a. the project will start to use the postgres server if you leave it set to do s
 
 ### Rebuilding the Stack (from the root of the cloned repository)
 ```
-docker compose down
+docker compose down --volumes --rmi all
 docker build --no-cache -t django:latest .
-docker-compose --file=docker-compose.yaml up --detach
+docker compose --file=docker-compose.yaml up --detach
 ```
