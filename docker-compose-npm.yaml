@@ -4,6 +4,7 @@ services:
   postgresdb:
     image: postgres:17.2-alpine3.21
     container_name: dockerized_django_project_postgres
+    restart: unless-stopped
     ports:
       - "5432:5432"
     volumes:
@@ -16,6 +17,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: dockerized_django_project_django
+    restart: unless-stopped
     depends_on:
       - postgresdb
     volumes:
@@ -27,6 +29,7 @@ services:
   nginx:
     image: nginx:1.27.3-alpine-slim
     container_name: dockerized_django_project_nginx
+    restart: unless-stopped
     networks:
       - default
       - npm-network
