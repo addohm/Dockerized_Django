@@ -90,6 +90,6 @@ log_action "Rebuilding Docker image..."
 docker build --no-cache -t django:latest "${root}"
 
 log_action "Starting containers in detached mode..."
-docker-compose --file="${root}/docker-compose.yaml" up --detach
+docker compose --file="${root}/docker-compose.yaml" up --detach
 
 echo "Reset complete."
