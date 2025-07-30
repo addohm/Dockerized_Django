@@ -6,6 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: dockerized_django_project_django
+    restart: unless-stopped
     depends_on:
       - postgresdb
     volumes:
@@ -17,6 +18,7 @@ services:
   nginx:
     image: nginx:1.27.3-alpine-slim
     container_name: dockerized_django_project_nginx
+    restart: unless-stopped
     ports:
       - "8001:80"
     volumes:
