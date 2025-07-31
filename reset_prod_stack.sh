@@ -15,6 +15,19 @@ log_action() {
     echo "==> $1"
 }
 
+
+# Function to ask yes/no question
+ask_yes_no() {
+    while true; do
+        read -p "$1 [y/n]: " yn
+        case $yn in
+            [Yy]* ) return 0;;
+            [Nn]* ) return 1;;
+            * ) echo "Please answer yes or no.";;
+        esac
+    done
+}
+
 # Process each item in the root directory
 for item in "$django_root"/*; do
     # Delete the sqlite3 database
