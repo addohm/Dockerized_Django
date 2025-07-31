@@ -29,7 +29,8 @@ b. any changes made to code will not be reflected to the container state until t
 
 * Edit the `docker-compose.yaml` if you chose to define the project name, and apply the project name there as well as the container names.  Leave the `project` folder name as is.  There will be instructions on how to modify that later.
 * Save it as is.
-* `docker build --no-cache -t django:latest .`
+* `docker build --no-cache -t d-django:latest --file ./django/Dockerfile.django ./django/`
+* `docker build --no-cache -t d-nginx:latest --file ./nginx/Dockerfile.nginx ./nginx/`
 * `docker compose --file=docker-compose.yaml up --detach`
 * Visit http://0.0.0.0:8001/ in your browser to verify its running
 
@@ -44,6 +45,7 @@ a. the project will start to use the postgres server if you leave it set to do s
 ### Rebuilding the Stack (from the root of the cloned repository)
 ```
 docker compose down --volumes --rmi all
-docker build --no-cache -t django:latest .
+docker build --no-cache -t d-django:latest --file  /django/Dockerfile.django ./django/
+docker build --no-cache -t d-nginx:latest --file ./nginx/Dockerfile.nginx ./nginx/
 docker compose --file=docker-compose.yaml up --detach
 ```
