@@ -4,12 +4,13 @@ services:
   postgresdb:
     image: postgres:17.2-alpine3.21
     container_name: dockerized_django_postgres
-    ports:
-      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     env_file:
       - ./.env
+    networks:
+      - backend
+    restart: unless-stopped
 
   django:
     build:
@@ -24,6 +25,10 @@ services:
       - media_files:/project/mediafiles
     env_file:
       - ./.env
+    networks:
+      - backend
+      - frontend
+    restart: unless-stopped
 
   nginx:
     build:
@@ -32,8 +37,6 @@ services:
     container_name: dockerized_django_nginx
     ports:
       - "8001:80"
-    networks:
-      - default
     volumes:
       - static_files:/static:ro
       - media_files:/media:ro
@@ -41,6 +44,9 @@ services:
       - nginx_run:/var/run/nginx
     depends_on:
       - django
+    networks:
+      - frontend
+    restart: unless-stopped
 
 volumes:
   postgres_data:
@@ -48,3 +54,7 @@ volumes:
   media_files:
   nginx_temp:
   nginx_run:
+
+networks:
+  backend:
+  frontend:
