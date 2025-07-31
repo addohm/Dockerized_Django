@@ -1,21 +1,21 @@
-name: dockerized_django_stack
+name: dyvlife_stack
 
 services:
   postgresdb:
     image: postgres:17.2-alpine3.21
-    container_name: dockerized_django_postgres
-    ports:
-      - "5432:5432"
+    container_name: dyvlife_postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
     env_file:
       - ./.env
+    networks:
+      - backend
 
   django:
     build:
       context: ./django
       dockerfile: Dockerfile.django
-    container_name: dockerized_django_django
+    container_name: dyvlife_django
     user: "1000:1000"
     depends_on:
       - postgresdb
@@ -24,17 +24,17 @@ services:
       - media_files:/project/mediafiles
     env_file:
       - ./.env
+    networks:
+      - backend
+      - frontend
 
   nginx:
     build:
       context: ./nginx
       dockerfile: Dockerfile.nginx
-    container_name: dockerized_django_nginx
+    container_name: dyvlife_nginx
     ports:
       - "8001:80"
-    networks:
-      - default
-      - npm-network
     volumes:
       - static_files:/static:ro
       - media_files:/media:ro
@@ -42,6 +42,9 @@ services:
       - nginx_run:/var/run/nginx
     depends_on:
       - django
+    networks:
+      - frontend
+      - npm-network
 
 volumes:
   postgres_data:
@@ -51,5 +54,7 @@ volumes:
   nginx_run:
 
 networks:
+  backend:
+  frontend:
   npm-network:
     external: true
