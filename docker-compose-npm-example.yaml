@@ -41,6 +41,7 @@ services:
       - media_data:/media:ro
     depends_on:
       - django
+    user: nginx:nginx
 
 volumes:
   postgres_data:
