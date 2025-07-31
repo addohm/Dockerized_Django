@@ -1,16 +1,6 @@
 name: dockerized_django_stack
 
 services:
-  postgresdb:
-    image: postgres:17.2-alpine3.21
-    container_name: dockerized_django_postgres
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    env_file:
-      - ./.env
-
   django:
     build:
       context: ./django
@@ -34,7 +24,6 @@ services:
       - "8001:80"
     networks:
       - default
-      - npm-network
     volumes:
       - static_files:/static:ro
       - media_files:/media:ro
@@ -44,7 +33,6 @@ services:
       - django
 
 volumes:
-  postgres_data:
   static_files:
   media_files:
   nginx_temp:

@@ -34,7 +34,6 @@ services:
       - "8001:80"
     networks:
       - default
-      - npm-network
     volumes:
       - static_files:/static:ro
       - media_files:/media:ro
