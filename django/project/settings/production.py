@@ -126,6 +126,10 @@ STATIC_ROOT = "/project/staticfiles"
 # for example on a CDN.
 STATIC_URL = "static/"
 
+# Restrict upload file size
+DATA_UPLOAD_MAX_MEMORY_SIZE = 50 * 1024 * 1024  # 50MB
+FILE_UPLOAD_MAX_MEMORY_SIZE = 50 * 1024 * 1024  # 50MB
+
 # MEDIA_ROOT: This is the absolute path to a directory where Django will gather any user uploaded images and files
 # ex: /var/www/files/media
 MEDIA_ROOT = "/project/mediafiles"
@@ -136,16 +140,16 @@ MEDIA_URL = "media/"
 
 # https://django-jazzmin.readthedocs.io/
 JAZZMIN_SETTINGS = {
-    "site_title": "CDC Admin",
-    "site_header": "Cave Dive Club",
-    "site_brand": "Cave Dive Club",
-    "site_logo": "/images/logos/cdc_logo_transinv_sm.png",
-    "login_logo": '/images/logos/cdc_logo_trans_sm.png',
-    "login_logo_dark": '/images/logos/cdc_logo_transinv_sm.png',
+    "site_title": "",
+    "site_header": "",
+    "site_brand": "",
+    "site_logo": "",
+    "login_logo": "",
+    "login_logo_dark": "",
     "site_logo_classes": "",
-    "site_icon": '/images/favicons/favicon-32x32.png',
-    "welcome_sign": "Welcome to the CDC Admin",
-    "copyright": "Cave Dive Club",
+    "site_icon": '/',
+    "welcome_sign": "",
+    "copyright": "",
     "user_avatar": None,
 
     ############
@@ -154,7 +158,7 @@ JAZZMIN_SETTINGS = {
 
     "topmenu_links": [
         {"name": "View Site",  "url": "index"},
-        {"name": "Support", "url": "https://github.com/addohm/dcdc_docker/issues",
+        {"name": "Support", "url": "https://github.com/addohm/Dockerized_Django/issues",
             "new_window": True},
     ],
 
@@ -163,7 +167,7 @@ JAZZMIN_SETTINGS = {
     #############
 
     "usermenu_links": [
-        {"name": "Support", "url": "https://github.com/addohm/dcdc_docker/issues",
+        {"name": "Support", "url": "https://github.com/addohm/Dockerized_Django/issues",
             "new_window": True},
     ],
 
@@ -175,7 +179,7 @@ JAZZMIN_SETTINGS = {
     "navigation_expanded": True,
     "hide_apps": [],
     "hide_models": [],
-    "order_with_respect_to": ["mainapp", "mainapp.contact", "mainapp.divesites", "mainapp.products", "auth"],
+    "order_with_respect_to": ["mainapp", "auth"],
     "icons": {
         "auth": "fas fa-users-cog",
         "auth.user": "fas fa-user",

@@ -123,6 +123,10 @@ STATIC_ROOT = "./staticfiles"
 # for example on a CDN.
 STATIC_URL = "static/"
 
+# Restrict upload file size
+DATA_UPLOAD_MAX_MEMORY_SIZE = 50 * 1024 * 1024  # 50MB
+FILE_UPLOAD_MAX_MEMORY_SIZE = 50 * 1024 * 1024  # 50MB
+
 # MEDIA_ROOT: This is the absolute path to a directory where Django will gather any user uploaded images and files
 # ex: /var/www/files/media
 MEDIA_ROOT = "./mediafiles"
@@ -146,16 +150,16 @@ if ENABLE_DEBUG_TOOLBAR:
 
 # https://django-jazzmin.readthedocs.io/
 JAZZMIN_SETTINGS = {
-    "site_title": "your site Admin",
-    "site_header": "your site",
-    "site_brand": "your site",
-    "site_logo": "/images/logos/divemonkey_dark_sm.png",
-    "login_logo": '/images/logos/divemonkey_dark_sm.png',
-    "login_logo_dark": '/images/logos/divemonkey_dark.png',
+    "site_title": "",
+    "site_header": "",
+    "site_brand": "",
+    "site_logo": "",
+    "login_logo": "",
+    "login_logo_dark": "",
     "site_logo_classes": "",
-    "site_icon": '/images/favicons/favicon-32x32.png',
-    "welcome_sign": "Welcome to the site Admin",
-    "copyright": "your site",
+    "site_icon": '/',
+    "welcome_sign": "",
+    "copyright": "",
     "user_avatar": None,
 
     ############
@@ -164,7 +168,8 @@ JAZZMIN_SETTINGS = {
 
     "topmenu_links": [
         {"name": "View Site",  "url": "index"},
-        {"name": "Support", "url": "", "new_window": True},
+        {"name": "Support", "url": "https://github.com/addohm/Dockerized_Django/issues",
+            "new_window": True},
     ],
 
     #############
@@ -172,7 +177,8 @@ JAZZMIN_SETTINGS = {
     #############
 
     "usermenu_links": [
-        {"name": "Support", "url": "", "new_window": True},
+        {"name": "Support", "url": "https://github.com/addohm/Dockerized_Django/issues",
+            "new_window": True},
     ],
 
     #############
@@ -203,7 +209,7 @@ JAZZMIN_SETTINGS = {
     "custom_css": None,
     "custom_js": None,
     "use_google_fonts_cdn": True,
-    "show_ui_builder": True,
+    "show_ui_builder": False,
 
     ###############
     # Change view #

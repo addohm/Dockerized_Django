@@ -5,12 +5,12 @@ The steps listed below in Local Development can all be done as-is after cloning 
 * `python -m venv env`
 * `source env/bin/activate`
 * `pip install --upgrade pip`
-* `pip install -r requirements.txt`
+* `pip install -r django/requirements.txt`
 * Edit the `.env.example` file and replace all the fields as appropriate
 * Save as `.env`
-* `python manage.py migrate`
-* `python manage.py createsuperuser`
-* `python manage.py runserver 8001 --settings=project.settings.development`
+* `python django/manage.py migrate`
+* `python django/manage.py createsuperuser`
+* `python django/manage.py runserver 8001 --settings=project.settings.development`
 * Visit http://0.0.0.0:8001/ in your browser to verify its running
 
 Following this, must first develop your project locally as you normally would.  Use this file structure as a base.  Feel free to do the standard things expected and get your project in a state which you're ready to test and troubleshoot it in a containerized state.  This project comes with the base django project and an initial app to get you started.  Adding further apps is all still very standard.  
