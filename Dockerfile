@@ -12,6 +12,7 @@ ENV PYTHONBUFFERED=1
 # Make the home directory if it does not exist, create the user, and assign ownership to that user
 RUN addgroup -S django && \
     adduser -h /project -S django -G django && \
+    adduser -h /project -S nginx -G django && \
     install -d -m 0765 -o django -g django /project \
     install -d -m 0765 -o django -g django /project/mediafiles \
     install -d -m 0765 -o django -g django /project/staticfiles
