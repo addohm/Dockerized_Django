@@ -100,13 +100,11 @@ rm -rf "${django_root}/staticfiles/"*
 log_action "Cleaning media files (except default.jpg)..."
 find "${django_root}/mediafiles/" -mindepth 1 -not -name 'default.jpg' -delete
 
-if ask_yes_no "Do you want to rebuild the images?"; then
+if ask_yes_no "Do you want to rebuild the images and run docker compose up?"; then
     log_action "Rebuilding Docker image(s)..."
     docker build --no-cache -t d-django:latest --file "${django_root}/Dockerfile.django" "${django_root}"
     docker build --no-cache -t d-nginx:latest --file "${root}/nginx/Dockerfile.nginx" "${root}/nginx"
-fi
-
-if ask_yes_no "Do you want to rebuild the images?"; then
+    
     log_action "Starting containers in detached mode..."
     docker compose --file="${root}/docker-compose.yaml" up --detach
 fi
