@@ -1,9 +1,9 @@
-name: dyvlife_stack
+name: dockerized_django_stack
 
 services:
   postgresdb:
     image: postgres:17.2-alpine3.21
-    container_name: dyvlife_postgres
+    container_name: dockerized_django_postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
     env_file:
@@ -15,7 +15,7 @@ services:
     build:
       context: ./django
       dockerfile: Dockerfile.django
-    container_name: dyvlife_django
+    container_name: dockerized_django_django
     user: "1000:1000"
     depends_on:
       - postgresdb
@@ -32,7 +32,7 @@ services:
     build:
       context: ./nginx
       dockerfile: Dockerfile.nginx
-    container_name: dyvlife_nginx
+    container_name: dockerized_django_nginx
     ports:
       - "8001:80"
     volumes:
