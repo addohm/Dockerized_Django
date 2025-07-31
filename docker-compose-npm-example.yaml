@@ -49,3 +49,7 @@ volumes:
   media_files:
   nginx_temp:
   nginx_run:
+
+networks:
+  npm-network:
+    external: true
