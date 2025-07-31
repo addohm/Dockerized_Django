@@ -2,6 +2,7 @@
 
 # Get the file path of this script
 root=$(dirname "$(realpath "$0")")
+django_root="$root/django"
 
 # Function to print deletion messages
 log_action() {
@@ -21,7 +22,7 @@ ask_yes_no() {
 }
 
 # Process each item in the root directory
-for item in "$root"/*; do
+for item in "$django_root"/*; do
   # Delete the sqlite3 database
   if [[ "$(basename "$item")" == "db.sqlite3" ]]; then
     if [[ -f "$item" ]]; then
@@ -88,8 +89,8 @@ if [[ -z "$VIRTUAL_ENV" ]]; then
   # Try to find and activate the virtual environment
   if [[ -f "$root/env/bin/activate" ]]; then
     source "$root/env/bin/activate"
-  elif [[ -f "$root/../env/bin/activate" ]]; then
-    source "$root/../env/bin/activate"
+  elif [[ -f "$django_root/env/bin/activate" ]]; then
+    source "$django_root/env/bin/activate"
   else
     echo "Could not find virtual environment to activate"
     exit 1

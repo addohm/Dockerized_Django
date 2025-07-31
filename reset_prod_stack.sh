@@ -8,7 +8,7 @@ set -e
 
 # Get the file path of this script
 root=$(dirname "$(realpath "$0")")
-django_root=${root}/django
+django_root="$root/django"
 
 # Function to print action messages
 log_action() {
