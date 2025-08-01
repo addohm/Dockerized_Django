@@ -42,7 +42,7 @@ for item in "$django_root"/*; do
     if [[ -d "$item" ]]; then
         dir_name=$(basename "$item")
         echo "> $item"
-
+        
         # Delete USER UPLOADED MEDIA folder contents
         if [[ "$dir_name" == "mediafiles" || "$dir_name" == "staticfiles" ]]; then
             for subitem in "$item"/*; do
@@ -58,13 +58,13 @@ for item in "$django_root"/*; do
                 fi
             done
         fi
-
+        
         # Process subdirectories
         for subitem in "$item"/*; do
             if [[ -e "$subitem" ]]; then
                 subitem_name=$(basename "$subitem")
                 echo ">> $subitem"
-
+                
                 # Clear out the APP MIGRATIONS files
                 if [[ "$subitem_name" == "migrations" && -d "$subitem" ]]; then
                     echo ">>> $subitem"
@@ -75,7 +75,7 @@ for item in "$django_root"/*; do
                         fi
                     done
                 fi
-
+                
                 # Clear out the PYCACHE files
                 if [[ "$subitem_name" == "__pycache__" && -d "$subitem" ]]; then
                     echo ">>> $subitem"
@@ -100,14 +100,15 @@ rm -rf "${django_root}/staticfiles/"*
 log_action "Cleaning media files (except default.jpg)..."
 find "${django_root}/mediafiles/" -mindepth 1 -not -name 'default.jpg' -delete
 
-if ask_yes_no "Do you want to rebuild the images and run docker compose up?"; then
+if ask_yes_no "Do you want to rebuild the images?"; then
     log_action "Rebuilding Docker image(s)..."
     docker build --no-cache -t d-django:latest --file "${django_root}/Dockerfile.django" "${django_root}"
     docker build --no-cache -t d-nginx:latest --file "${root}/nginx/Dockerfile.nginx" "${root}/nginx"
-    
+fi
+
+if ask_yes_no "Do you want to rebuild the images?"; then
     log_action "Starting containers in detached mode..."
     docker compose --file="${root}/docker-compose.yaml" up --detach
 fi
 
 echo "Reset complete."
-

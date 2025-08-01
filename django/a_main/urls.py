@@ -4,7 +4,7 @@ from django.contrib.auth.views import LogoutView
 from .views import IndexView, ContactFormCreateView, SentView, ProtectedView, CustomLoginView, ProfileUpdateView, ProfileDetailView
 
 
-appname = "mainapp"
+appname = "a_main"
 
 urlpatterns = [
     # Use if you want to break out your login redirect, correlates with settings.py LOGIN_URL
