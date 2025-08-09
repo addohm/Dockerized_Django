@@ -106,7 +106,7 @@ if ask_yes_no "Do you want to rebuild the images?"; then
     docker build --no-cache -t d-nginx:latest --file "${root}/nginx/Dockerfile.nginx" "${root}/nginx"
 fi
 
-if ask_yes_no "Do you want to rebuild the images?"; then
+if ask_yes_no "Do you want to run docker compose?"; then
     log_action "Starting containers in detached mode..."
     docker compose --file="${root}/docker-compose.yaml" up --detach
 fi
