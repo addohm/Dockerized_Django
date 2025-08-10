@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'a_main'
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -137,6 +139,9 @@ MEDIA_ROOT = "/project/mediafiles"
 # MEDIA_URL: This is the base URL location from which static files will be served,
 # for example on a CDN.
 MEDIA_URL = "media/"
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # https://django-jazzmin.readthedocs.io/
 JAZZMIN_SETTINGS = {
