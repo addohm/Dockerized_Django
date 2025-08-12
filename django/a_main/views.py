@@ -10,14 +10,14 @@ from .forms import ContactForm, LoginForm, CombinedProfileForm
 
 class CustomLoginView(LoginView):
     form_class = LoginForm
-    template_name = 'a_main/login.html'
+    template_name = 'a_main/forms/login.html'
     redirect_authenticated_user = True  # Redirects users who are already logged in
     extra_context = {'background_style': 'otherBody',
                      'viewname': 'login'}
 
 
 class ProtectedView(LoginRequiredMixin, TemplateView):
-    template_name = "a_main/protected.html"
+    template_name = "a_main/auth/protected.html"
     extra_context = {'background_style': 'otherBody',
                      'viewname': 'protected'}
     login_url = 'login'
@@ -31,7 +31,7 @@ class ProtectedView(LoginRequiredMixin, TemplateView):
 
 class ProfileDetailView(LoginRequiredMixin, DetailView):
     model = Profile
-    template_name = 'a_main/profile-detail.html'
+    template_name = 'a_main/auth/profile-detail.html'
     context_object_name = 'profile'
     extra_context = {'background_style': 'otherBody',
                      'viewname': 'profile-detail'}
@@ -43,7 +43,7 @@ class ProfileDetailView(LoginRequiredMixin, DetailView):
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = Profile
     form_class = CombinedProfileForm  # Use combined form
-    template_name = 'a_main/profile-update.html'
+    template_name = 'a_main/auth/profile-update.html'
     success_url = reverse_lazy('profile-detail')
     extra_context = {
         'background_style': 'otherBody',
@@ -62,14 +62,14 @@ class IndexView(TemplateView):
 
 class ContactFormCreateView(CreateView):
     form_class = ContactForm
-    template_name = 'a_main/contact.html'
+    template_name = 'a_main/forms/contact.html'
     success_url = '/sent/'
     extra_context = {'background_style': 'otherBody',
                      'viewname': 'contact'}
 
 
 class SentView(TemplateView):
-    template_name = "a_main/message_sent.html"
+    template_name = "a_main/forms/message_sent.html"
     sent = Contact.objects.all()
     extra_context = {'background_style': 'otherBody',
                      'sent': sent,

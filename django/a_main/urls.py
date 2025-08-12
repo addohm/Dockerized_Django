@@ -3,7 +3,6 @@ from django.contrib.auth.views import LogoutView
 
 from .views import IndexView, ContactFormCreateView, SentView, ProtectedView, CustomLoginView, ProfileUpdateView, ProfileDetailView
 
-
 appname = "a_main"
 
 urlpatterns = [
