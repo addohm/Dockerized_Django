@@ -30,8 +30,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'a_main',
-    'crispy_forms',
-    'crispy_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -136,9 +134,6 @@ MEDIA_ROOT = "./django/mediafiles"
 # MEDIA_URL: This is the base URL location from which media files will be served,
 # for example on a CDN.
 MEDIA_URL = "media/"
-
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 ENABLE_DEBUG_TOOLBAR = DEBUG and "test" not in sys.argv
 if ENABLE_DEBUG_TOOLBAR:
