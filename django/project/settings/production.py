@@ -140,9 +140,6 @@ MEDIA_ROOT = "/project/mediafiles"
 # for example on a CDN.
 MEDIA_URL = "media/"
 
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-CRISPY_TEMPLATE_PACK = "bootstrap5"
-
 # https://django-jazzmin.readthedocs.io/
 JAZZMIN_SETTINGS = {
     "site_title": "",
